@@ -1,0 +1,50 @@
+server:
+  port: 8084
+
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://localhost:8761/eureka/
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  tracing:
+    sampling:
+      probability: 1.0 # Always sample all requests
+  metrics:
+    export:
+      simple:
+        enabled: false
+  zipkin:
+    base-url: http://localhost:9411
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/user_db?useSSL=false&serverTimezone=UTC
+    username: root
+    password: Inubit@059
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+
+
+
+
+jwt:
+  secret: Synergy
+  expiration: 3600000 # 1 hour in milliseconds
+
+
+
+
+
+

@@ -1,0 +1,47 @@
+
+server:
+  port: 8083
+
+spring:
+  application:
+    name: inventory-service
+  config:
+    import: "optional:configserver:http://localhost:8088"
+  datasource:
+    url: jdbc:mysql://localhost:3306/inventory_db?useSSL=false&serverTimezone=UTC
+    username: root
+    password: Inubit@059
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    register-with-eureka: true
+    fetch-registry: true
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  tracing:
+    sampling:
+      probability: 1.0 # Always sample all requests
+  metrics:
+    export:
+      simple:
+        enabled: false
+  zipkin:
+    base-url: http://localhost:9411
+
+

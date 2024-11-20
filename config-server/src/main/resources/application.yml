@@ -1,0 +1,30 @@
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  tracing:
+    sampling:
+      probability: 1.0 # Always sample all requests
+  metrics:
+    export:
+      simple:
+        enabled: false
+  zipkin:
+    base-url: http://localhost:9411
+eureka:
+  client:
+    service-url:
+      defaultZone: http://localhost:8761/eureka/ # Eureka Server URL
+server:
+  port: 8088
+spring:
+  application:
+    name: config-server
+  profiles:
+    active: native
+  cloud:
+    config:
+      server:
+        native:
+          search-locations: C:\Users\Vinod_personal\OneDrive\Desktop\BackendPreparation\Developer-Assignment\shoppingApp\config-server\src\main\resources\config # Replace with the actual pat

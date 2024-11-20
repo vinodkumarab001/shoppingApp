@@ -1,0 +1,30 @@
+server:
+  port: 8761
+
+spring:
+  application:
+    name: service-registry
+eureka:
+  instance:
+    hostname: localhost
+  client:
+    register-with-eureka: false # The registry server itself does not need to register with another server
+    fetch-registry: false   # The server does not need to fetch the registry
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
+
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  tracing:
+    sampling:
+      probability: 1.0 # Always sample all requests
+  metrics:
+    export:
+      simple:
+        enabled: false
+  zipkin:
+    base-url: http://localhost:9411
